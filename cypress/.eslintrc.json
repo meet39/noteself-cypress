@@ -1,0 +1,23 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": [
+    "cypress",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:cypress/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "standard"
+  ],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "cypress/globals": true
+  },
+  "rules": {
+    "semi": ["error", "always"]
+  }
+}
