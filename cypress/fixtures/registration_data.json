@@ -1,0 +1,9 @@
+{
+  "name": "This is correct data for registration",
+  "firstName": "Ivan",
+  "lastName": "Ivanov",
+  "phone": "6519861651",
+  "email": "ivan.ivanov@noteself.com",
+  "password": "123456",
+  "passwordConfirm": "123456"
+}
