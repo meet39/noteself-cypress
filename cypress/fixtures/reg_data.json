@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "case": "This is correct data for registration",
+    "firstName": "Ivan",
+    "lastName": "Ivanov",
+    "phone": "6519861651",
+    "email": "ivan.ivanov@noteself.com",
+    "password": "123456",
+    "passwordConfirm": "123456"
+  },
+  {
+    "id": 2,
+    "case": "This user exists",
+    "firstName": "Ivan",
+    "lastName": "Ivanov",
+    "phone": "6519861651",
+    "email": "ivan.ivanov@noteself.com",
+    "password": "123456",
+    "passwordConfirm": "123456"
+  }
+]

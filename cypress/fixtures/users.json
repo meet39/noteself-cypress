@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "case": "This user is exists",
+    "login": "test",
+    "password": "123"
+  },
+  {
+    "id": 2,
+    "case": "This user is not exists",
+    "login": "bla_bla",
+    "password": "123o2i4jf493"
+  }
+]

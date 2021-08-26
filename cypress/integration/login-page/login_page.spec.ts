@@ -31,8 +31,8 @@ describe('Login Page', () => {
 
   describe('should login', () => {
     it('with correct login by default user', () => {
-      cy.fixture('default_user').then(jsonData => {
-        cy.login(jsonData.login, jsonData.password);
+      cy.fixture('users').then(jsonData => {
+        cy.login(jsonData[0]);
       });
       cy.location('pathname').should('eq', '/');
     });
@@ -44,19 +44,26 @@ describe('Login Page', () => {
       cy.url().should('include', '/login');
     });
 
-    it('without login', () => {
-      cy.fixture('default_user').then(jsonData => {
-        cy.get('@loginField').type(jsonData.login);
+    it('without login and with correct pass', () => {
+      cy.fixture('users').then(jsonData => {
+        cy.get('@loginField').type(jsonData[0].login);
+        cy.get('@passwordField').type('some password');
       });
       cy.get('@loginBtn').click();
       cy.url().should('include', '/login');
     });
 
-    it('without password', () => {
-      cy.fixture('default_user').then(jsonData => {
-        cy.get('@passwordField').type(jsonData.password);
+    it('without password and with correct login', () => {
+      cy.fixture('users').then(jsonData => {
+        cy.get('@passwordField').type(jsonData[0].password);
       });
       cy.get('@loginBtn').click();
+      cy.url().should('include', '/login');
+    });
+    it('with non-existing user', () => {
+      cy.fixture('users').then(jsonData => {
+        cy.login(jsonData[1]);
+      });
       cy.url().should('include', '/login');
     });
   });

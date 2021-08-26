@@ -6,22 +6,28 @@ interface RegData {
   password: string,
   passwordConfirm: string
 }
+interface LoginData {
+  login: string,
+  password: string,
+}
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Cypress {
   interface Chainable {
-    login(login: string, password: string): void;
+    login(userData: LoginData): void;
     registration(regData: RegData): void;
     getInputByName(name: string): Chainable<Element>;
+    seedAndVisit(userDates)
   }
 }
+
 Cypress.Commands.add('getInputByName', (name) => {
   return cy.get(`[formcontrolname=${name}]`);
 });
 
-Cypress.Commands.add('login', (login, password) => {
-  cy.getInputByName('name').type(login);
-  cy.getInputByName('password').type(password);
+Cypress.Commands.add('login', (userData: LoginData) => {
+  cy.getInputByName('name').type(userData.login);
+  cy.getInputByName('password').type(userData.password);
   cy.get('.login-form button').click();
 });
 Cypress.Commands.add('registration', (data: RegData) => {
