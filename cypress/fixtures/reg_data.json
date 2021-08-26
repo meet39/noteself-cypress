@@ -11,7 +11,7 @@
   },
   {
     "id": 2,
-    "case": "This user exists",
+    "case": "This user already exists",
     "firstName": "Ivan",
     "lastName": "Ivanov",
     "phone": "6519861651",

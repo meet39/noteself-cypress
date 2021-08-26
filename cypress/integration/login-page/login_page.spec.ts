@@ -38,32 +38,34 @@ describe('Login Page', () => {
     });
   });
 
-  describe('should not login', () => {
+  describe('should not login', function () {
+    beforeEach(() => {
+      cy.fixture('users').then(function (jsonData) {
+        this.user = jsonData[0];
+        this.unregUser = jsonData[1];
+      });
+    });
     it('without login and password', () => {
       cy.get('@loginBtn').click();
       cy.url().should('include', '/login');
     });
-
-    it('without login and with correct pass', () => {
-      cy.fixture('users').then(jsonData => {
-        cy.get('@loginField').type(jsonData[0].login);
-        cy.get('@passwordField').type('some password');
+    it('without login and with correct pass', function () {
+      cy.login({
+        login: this.user.login,
+        password: 'some password'
       });
-      cy.get('@loginBtn').click();
       cy.url().should('include', '/login');
     });
 
-    it('without password and with correct login', () => {
-      cy.fixture('users').then(jsonData => {
-        cy.get('@passwordField').type(jsonData[0].password);
-      });
+    it('without password and with correct login', function () {
+      cy.get('@passwordField').type(this.user.password);
       cy.get('@loginBtn').click();
       cy.url().should('include', '/login');
     });
-    it('with non-existing user', () => {
-      cy.fixture('users').then(jsonData => {
-        cy.login(jsonData[1]);
-      });
+    it('with non-existing user', function () {
+      cy.login(this.unregUser);
+
+      // TODO: добавить проверку на появление ошибки
       cy.url().should('include', '/login');
     });
   });
